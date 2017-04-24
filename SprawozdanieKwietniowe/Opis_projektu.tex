@@ -63,12 +63,15 @@ Termin zajęć: piątek 9:15\\
 \newpage
 
 \section{Opis projektu}
+
+\subsection{Koncept projektu}
 \normalsize
 Projekt jest realizowany w ramach kursu Bazy Danych na specjalności Robotyka (ARR), na kierunku Automatyka i Robotyka (AiR), na wydziale Elektroniki (EKA), na Politechnice Wrocławskiej.\\
 Celem projektu jest stworzenie bazy danych przechowującej informacje pogodowe z różnych stacji, pobierane z serwera oraz zaimplementowanie metod analizy danych i wizualizacji wyników.\\
-
-
-\subsection{Koncept projektu}
+Dane do analizy zostaną pobrane z serwera ogimet.com dla wielu stacji pogodowych w Polsce i zapisane w tabelach.\\
+Standardowy użytkownik bazy ma uprawnienia jedynie do wyświetlania wyników analizy oraz danych pogodowych.\\
+Administrator ma dodatkowo możliwość dodawania, usuwania i zmiany stacji pogodowych, dla których będą pobierane dane.\\
+Wynikiem analizy danych są wykresy zależności różnych czynników pogodowych od siebie, wykresy porównawcze dla różnych stacji pogodowych oraz automatycznie generowany komentarz dotyczący warunków w pobliżu danej stacji.
 
 \subsection{Tabele}
 \begin{itemize}
@@ -109,12 +112,69 @@ Celem projektu jest stworzenie bazy danych przechowującej informacje pogodowe z
 	\item Średnia temperatura dzienna
 	\item Opady dzienne
 	\item Średnie ciśnienie dzienne
+	\item Automatyczny komentarz
+	\item Komentarz analityka
+	\end{itemize}
+\item Administratorzy (id: Admin)
+	\begin{itemize}
+	\item Login
+	\item Hasło
+	\item Imię
+	\item Nazwisko
+	\item e-mail
+	\end{itemize}
+\item Analitycy (id: Analityk)
+	\begin{itemize}
+	\item Login
+	\item Hasło
+	\item Imię
+	\item Nazwisko
+	\item e-mail
 	\end{itemize}
 \end{itemize}
 
 \subsection{Zależności}
 
 \subsection{Lista funkcjonalności}
+\begin{enumerate}
+\item Użytkownik
+	\begin{itemize}
+	\item Wyświetlenie analizy danych
+		\begin{itemize}
+		\item Wykresy zależności czynników pogodowych
+		\item Wykresy porównawcze warunków między stacjami
+		\item Komentarz dotyczący warunków
+		\end{itemize}
+	\item Wyświetlenie danych pogodowych
+		\begin{itemize}
+		\item Wyświetlenie tabeli Stacje
+		\item Wyświetlenie tabel Stacja Pogodowa
+		\end{itemize}
+	\end{itemize}
+\item Administrator (dziedziczy po użytkowniku)
+	\begin{itemize}
+	\item Zarządzanie danymi pogodowymi
+		\begin{itemize}
+		\item Dodanie stacji pogodowej
+		\item Usunięcie stacji pogodowej
+		\item Zmiana stacji pogodowej
+		\item Ręczna aktualizacja danych
+		\end{itemize}
+	\item Zarządzanie wynikami analizy danych
+		\begin{itemize}
+		\item Zmiana komentarza analityka
+		\item Ręczna aktualizacja wyników
+		\end{itemize}
+	\end{itemize}
+\item Analityk (dziedziczy po użytkowniku)
+	\begin{itemize}
+	\item Zarządzanie wynikami analizy danych
+		\begin{itemize}
+		\item Zmiana komentarza analityka
+		\item Ręczna aktualizacja wyników
+		\end{itemize}
+	\end{itemize}
+\end{enumerate}
 
 \end{document}
 
