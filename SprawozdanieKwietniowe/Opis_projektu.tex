@@ -20,50 +20,49 @@
 \usepackage{graphicx}
 \usepackage{multirow}
 \newenvironment{bottompar}{\par\vspace*{\fill}}{\clearpage}
-
+ 
 \begin{document}
-
 \clearpage
 \thispagestyle{empty}
-
+ 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=1.3]{logo.png}
 \end{figure}
-
+ 
 \vspace{16pt}
-
+ 
 \begin{center}
 \textbf{\huge Bazy Danych (Projekt)}
-
+ 
 \vspace{30pt}
-
+ 
 \textbf{\LARGE Analiza danych pogodowych}
-
-
+ 
+ 
 \vspace{22pt}
-
+ 
 \LARGE Opis projektu
-
+ 
 \end{center}
-
+ 
 \vspace{20pt}
-
+ 
 \flushleft Autorzy: Dymitr Choroszczak 218627, Krzysztof Dąbek 218549\\
 Kurs: Bazy danych (projekt)\\
 Temat: Analiza danych\\
 Prowadzący: dr hab. inż. Grzegorz Mzyk, prof. PWr\\
 Termin zajęć: piątek 9:15\\
-
-
+ 
+ 
 \newpage
-
+ 
 \tableofcontents
-
+ 
 \newpage
-
+ 
 \section{Opis projektu}
-
+ 
 \subsection{Koncept projektu}
 \normalsize
 Projekt jest realizowany w ramach kursu Bazy Danych na specjalności Robotyka (ARR), na kierunku Automatyka i Robotyka (AiR), na wydziale Elektroniki (EKA), na Politechnice Wrocławskiej.\\
@@ -72,115 +71,113 @@ Dane do analizy zostaną pobrane z serwera ogimet.com dla wielu stacji pogodowyc
 Standardowy użytkownik bazy ma uprawnienia jedynie do wyświetlania wyników analizy oraz danych pogodowych.\\
 Administrator ma dodatkowo możliwość dodawania, usuwania i zmiany stacji pogodowych, dla których będą pobierane dane.\\
 Wynikiem analizy danych są wykresy zależności różnych czynników pogodowych od siebie, wykresy porównawcze dla różnych stacji pogodowych oraz automatycznie generowany komentarz dotyczący warunków w pobliżu danej stacji.
-
+ 
 \subsection{Tabele}
+
 \begin{itemize}
 \small
-\item Stacja pogodowa (id: //NazwaStacji//)
-	\begin{itemize}
-	\item Data
-	\item Godzina
-	\item Temperatury
-		\begin{itemize}
-		\item minimalna
-		\item średnia
-		\item maksymalna
-		\end{itemize}
-	\item Ciśnienie
-	\item Wilgotność
-	\item Wiatr
-		\begin{itemize}
-		\item kierunek
-		\item prędkość
-		\end{itemize}
-	\item Opady
-		\begin{itemize}
-		\item deszcz
-		\item śnieg
-		\end{itemize}
-	\item Zachmurzenie
-	\end{itemize}
 \item Stacje pogodowe (id: Stacje)
-	\begin{itemize}
-	\item Nazwa Stacji
-	\item Lokalizacja
-	\item Ostatnia aktualizacja
-		\begin{itemize}
-		\item Data
-		\item Godzina
-		\end{itemize}
-	\item Średnia temperatura dzienna
-	\item Opady dzienne
-	\item Średnie ciśnienie dzienne
-	\item Automatyczny komentarz
-	\item Komentarz analityka
-	\end{itemize}
-\item Administratorzy (id: Admin)
-	\begin{itemize}
-	\item Login
-	\item Hasło
-	\item Imię
-	\item Nazwisko
-	\item e-mail
-	\end{itemize}
-\item Analitycy (id: Analityk)
-	\begin{itemize}
-	\item Login
-	\item Hasło
-	\item Imię
-	\item Nazwisko
-	\item e-mail
-	\end{itemize}
+    \begin{itemize}
+	\item Stacja pogodowa (MeteoStation id)
+    \item Szerokość geograficzna
+    \item Długość geograficzna
+    \item Automatyczny komentarz
+    \item Komentarz analityka
+    \end{itemize}
+\item Stacja pogodowa (MeteoStation id)
+    \begin{itemize}
+    \item Data
+    \item Godzina
+    \item Temperatury (Temperatures id)
+    \item Ciśnienie
+    \item Opady (Precipitation id)
+    \item Wilgotność
+    \item Wiatr (Wind id)
+    \item Zachmurzenie
+    \end{itemize}
+\item Temperatury (Temperatures id)
+    \begin{itemize}
+    \item Stacja pogodowa (MeteoStation id)
+    \item minimalna
+    \item średnia
+    \item maksymalna
+    \end{itemize}
+\item Opady (Precipitation id)
+    \begin{itemize}
+    \item Stacja pogodowa (MeteoStation id)
+    \item deszcz
+    \item śnieg
+    \end{itemize}
+\item Wiatr (Wind id)
+    \begin{itemize}
+    \item Stacja pogodowa (MeteoStation id)
+    \item kierunek
+    \item prędkość
+    \end{itemize}
+\item Administratorzy (Admin id)
+    \begin{itemize}
+    \item Login
+    \item Hasło
+    \item Imię
+    \item Nazwisko
+    \item e-mail
+    \end{itemize}
+\item Analitycy (Analyst id)
+    \begin{itemize}
+    \item Login
+    \item Hasło
+    \item Imię
+    \item Nazwisko
+    \item e-mail
+    \end{itemize}
 \end{itemize}
-
+ 
 \subsection{Zależności}
-
+%graf z kluczykami i dziwnymi strzalkami
+ 
 \subsection{Lista funkcjonalności}
+%tabelka z rolami uzytkownikow
+%graf z ludzikami
+ 
 \begin{enumerate}
 \item Użytkownik
-	\begin{itemize}
-	\item Wyświetlenie analizy danych
-		\begin{itemize}
-		\item Wykresy zależności czynników pogodowych
-		\item Wykresy porównawcze warunków między stacjami
-		\item Komentarz dotyczący warunków
-		\end{itemize}
-	\item Wyświetlenie danych pogodowych
-		\begin{itemize}
-		\item Wyświetlenie tabeli Stacje
-		\item Wyświetlenie tabel Stacja Pogodowa
-		\end{itemize}
-	\end{itemize}
+    \begin{itemize}
+    \item Wyświetlenie analizy danych
+        \begin{itemize}
+        \item Wykresy zależności czynników pogodowych
+        \item Wykresy porównawcze warunków między stacjami
+        \item Komentarz automatyczny
+        \item Komentarz analityka
+        \end{itemize}
+    \item Wyświetlenie danych pogodowych
+        \begin{itemize}
+        \item Wyświetlenie tabeli Stacje
+        \item Wyświetlenie tabel Stacja Pogodowa
+        \end{itemize}
+    \end{itemize}
 \item Administrator (dziedziczy po użytkowniku)
-	\begin{itemize}
-	\item Zarządzanie danymi pogodowymi
-		\begin{itemize}
-		\item Dodanie stacji pogodowej
-		\item Usunięcie stacji pogodowej
-		\item Zmiana stacji pogodowej
-		\item Ręczna aktualizacja danych
-		\end{itemize}
-	\item Zarządzanie wynikami analizy danych
-		\begin{itemize}
-		\item Zmiana komentarza analityka
-		\item Ręczna aktualizacja wyników
-		\end{itemize}
-	\end{itemize}
+    \begin{itemize}
+    \item Zarządzanie danymi pogodowymi
+        \begin{itemize}
+        \item Dodanie stacji pogodowej
+        \item Usunięcie stacji pogodowej
+        \item Zmiana stacji pogodowej
+        \item Ręczna aktualizacja danych
+        \end{itemize}
+    \item Zarządzanie wynikami analizy danych
+        \begin{itemize}
+        \item Zmiana komentarza analityka
+        \item Ręczna aktualizacja wyników
+        \end{itemize}
+    \end{itemize}
 \item Analityk (dziedziczy po użytkowniku)
-	\begin{itemize}
-	\item Zarządzanie wynikami analizy danych
-		\begin{itemize}
-		\item Zmiana komentarza analityka
-		\item Ręczna aktualizacja wyników
-		\end{itemize}
-	\end{itemize}
+    \begin{itemize}
+    \item Zarządzanie wynikami analizy danych
+        \begin{itemize}
+        \item Zmiana komentarza analityka
+        \item Ręczna aktualizacja wyników
+        \end{itemize}
+    \end{itemize}
 \end{enumerate}
-
+ 
 \end{document}
-
-
-%\begin{figure}[H]
-%\centering
-%\includegraphics[width=\textwidth]{figures/03.png}
-%\caption{Implementacja metody siecznych \label{fig:03}}
-%\end{figure}
