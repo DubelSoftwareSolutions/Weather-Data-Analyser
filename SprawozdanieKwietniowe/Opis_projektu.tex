@@ -71,6 +71,46 @@ Celem projektu jest stworzenie bazy danych przechowującej informacje pogodowe z
 \subsection{Koncept projektu}
 
 \subsection{Tabele}
+\begin{itemize}
+\small
+\item Stacja pogodowa (id: //NazwaStacji//)
+	\begin{itemize}
+	\item Data
+	\item Godzina
+	\item Temperatury
+		\begin{itemize}
+		\item minimalna
+		\item średnia
+		\item maksymalna
+		\end{itemize}
+	\item Ciśnienie
+	\item Wilgotność
+	\item Wiatr
+		\begin{itemize}
+		\item kierunek
+		\item prędkość
+		\end{itemize}
+	\item Opady
+		\begin{itemize}
+		\item deszcz
+		\item śnieg
+		\end{itemize}
+	\item Zachmurzenie
+	\end{itemize}
+\item Stacje pogodowe (id: Stacje)
+	\begin{itemize}
+	\item Nazwa Stacji
+	\item Lokalizacja
+	\item Ostatnia aktualizacja
+		\begin{itemize}
+		\item Data
+		\item Godzina
+		\end{itemize}
+	\item Średnia temperatura dzienna
+	\item Opady dzienne
+	\item Średnie ciśnienie dzienne
+	\end{itemize}
+\end{itemize}
 
 \subsection{Zależności}
 
