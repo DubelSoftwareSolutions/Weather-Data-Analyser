@@ -76,11 +76,10 @@ Wynikiem analizy danych są wykresy zależności różnych czynników pogodowych
 
 \begin{itemize}
 \small
-\item Stacje pogodowe (id: Stacje)
+\item Stacje pogodowe (Stations id)
     \begin{itemize}
 	\item Stacja pogodowa (MeteoStation id)
-    \item Szerokość geograficzna
-    \item Długość geograficzna
+	\item Położenie (Localization id)
     \item Automatyczny komentarz
     \item Komentarz analityka
     \end{itemize}
@@ -89,12 +88,20 @@ Wynikiem analizy danych są wykresy zależności różnych czynników pogodowych
     \item Data
     \item Godzina
     \item Temperatury (Temperatures id)
-    \item Ciśnienie
-    \item Opady (Precipitation id)
     \item Wilgotność
     \item Wiatr (Wind id)
-    \item Zachmurzenie
+    \item Ciśnienie
+    \item Opady
+    \item Zachmurzenie (Clouds id)
+    \item Widoczność
     \end{itemize}
+\item Położenie (Localization id)
+	\begin{itemize}
+	\item Stacje pogodowe (Stations id)
+	\item Szerokość geograficzna
+    \item Długość geograficzna
+    \item Wysokość (m n.p.m.)
+	\end{itemize}
 \item Temperatury (Temperatures id)
     \begin{itemize}
     \item Stacja pogodowa (MeteoStation id)
@@ -102,18 +109,18 @@ Wynikiem analizy danych są wykresy zależności różnych czynników pogodowych
     \item średnia
     \item maksymalna
     \end{itemize}
-\item Opady (Precipitation id)
-    \begin{itemize}
-    \item Stacja pogodowa (MeteoStation id)
-    \item deszcz
-    \item śnieg
-    \end{itemize}
 \item Wiatr (Wind id)
     \begin{itemize}
     \item Stacja pogodowa (MeteoStation id)
     \item kierunek
     \item prędkość
+    \item porywy
     \end{itemize}
+\item Zachmurzenie (Clouds id)
+	\begin{itemize}
+	\item Wskaźnik całkowity
+	\item Wskaźnik dolny
+	\end{itemize}
 \item Administratorzy (Admin id)
     \begin{itemize}
     \item Login
