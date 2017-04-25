@@ -73,7 +73,30 @@ Zostaną stworzone dwie główne tabele z danymi, jedna będzie przechowywać po
 Standardowy użytkownik bazy ma uprawnienia jedynie do wyświetlania wyników analizy oraz danych pogodowych.\par
 Administrator ma dodatkowo możliwość dodawania, usuwania i zmiany stacji pogodowych, dla których będą pobierane dane.\par
 Wynikiem analizy danych są wykresy zależności różnych czynników pogodowych od siebie, wykresy porównawcze dla różnych stacji pogodowych, automatycznie generowany komentarz dotyczący warunków w pobliżu danej stacji oraz komentarz analityka.
- 
+
+\subsection{Wymagania}
+\subsubsection{Wymagania funkcjonalne}
+\begin{enumerate}
+\item Codzienna aktualizacja danych pogodowych
+\item Ręczna aktualizacja danych pogodowych
+\item Generowanie wykresów analitycznych
+\item Generowanie automatycznej analizy
+\item Wprowadzanie, zmiana komentarza analityka
+\item Wyświetlanie informacji o stacjach pogodowych
+\item Wyświetlanie danych pogodowych stacji
+\item Wyświetlanie wyników analizy pogody
+\item Dodawanie, usuwanie, zmiana stacji pogodowych
+\item Logowanie administratorów i analityków
+\item Przeprowadzanie wszystkich powyższych operacji tylko w zakresie uprawnień klienta
+\end{enumerate}
+\subsubsection{Wymagania niefunkcjonalne}
+\begin{enumerate}
+\item Odporność na utratę danych
+\item Bezpieczeństwo danych administratorów i analityków
+\item Wydajność
+\item Komunikacja z serwerem danych pogodowych
+\end{enumerate}
+
 \subsection{Tabele i zależności}
 %graf z kluczykami i dziwnymi strzalkami
 \begin{footnotesize}
