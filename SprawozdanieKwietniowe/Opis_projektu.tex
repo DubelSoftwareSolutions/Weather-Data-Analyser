@@ -87,7 +87,7 @@ Wynikiem analizy danych są wykresy zależności różnych czynników pogodowych
     \begin{itemize}
     \item Data
     \item Godzina
-    \item Temperatury (Temperatures id)
+    \item Temperatura (Temperature id)
     \item Wilgotność
     \item Wiatr (Wind id)
     \item Ciśnienie
@@ -102,7 +102,7 @@ Wynikiem analizy danych są wykresy zależności różnych czynników pogodowych
     \item Długość geograficzna
     \item Wysokość (m n.p.m.)
 	\end{itemize}
-\item Temperatury (Temperatures id)
+\item Temperatura (Temperature id)
     \begin{itemize}
     \item Stacja pogodowa (MeteoStation id)
     \item minimalna
@@ -141,9 +141,37 @@ Wynikiem analizy danych są wykresy zależności różnych czynników pogodowych
  
 \subsection{Zależności}
 %graf z kluczykami i dziwnymi strzalkami
- 
+\newpage
 \subsection{Lista funkcjonalności}
 %tabelka z rolami uzytkownikow
+\begin{table}[!htb]
+\centering
+\caption{Poziomy kompetencji klientów} 
+  \resizebox{\textwidth}{!}{\begin{tabular}{ | c | c | c | c | c |}   
+    \hline
+    \textbf{Klient }& \textbf{Stacje }& \textbf{Stacja }& \textbf{Położenie }&\textbf{ Temperatura }\\ \hline
+    \textbf{Administrator }& owner & owner & table.readonly & table.readonly \\ \hline
+    \textbf{Analityk }& table.readonly & table.readonly & table.readonly & table.readonly \\     \hline
+    \textbf{Użytkownik }& table.readonly & table.readonly & table.readonly & table.readonly \\ \hline
+  \end{tabular}}
+\end{table}
+
+\begin{table}[!htb]
+\centering 
+  \resizebox{\textwidth}{!}{\begin{tabular}{ | c | c | c | c | c |}   
+    \hline
+    \textbf{Klient }&\textbf{ Wiatr }& \textbf{Zachmurzenie }& \textbf{Administratorzy }& \textbf{Analitycy}\\ \hline    
+    \textbf{Administrator }& table.readonly & table.readonly & owner & owner  \\ \hline
+    \textbf{Analityk }& table.readonly & table.readonly & - & - \\    \hline
+    \textbf{Użytkownik }& table.readonly & table.readonly & - & - \\ \hline
+  \end{tabular}}
+\end{table}
+
+Rolom przyporządkowanym do poszczególnych użytkowników przyporządkowano następujące przywileje:
+\begin{itemize}
+\item owner : INSERT, SELECT, UPDATE, CREATE, DELETE
+\item table.readonly : SELECT
+\end{itemize}
 
 \begin{figure}[!htb]
 \includegraphics[width=\textwidth]{./figures/DiagramPrzypadkowUzycia.png}
