@@ -98,61 +98,61 @@ Wynikiem analizy danych są wykresy zależności różnych czynników pogodowych
 \item Komunikacja z serwerem danych pogodowych
 \end{enumerate}
 
+\newpage
 \subsection{Tabele i zależności}
 
 \begin{figure}[!htb]
 \includegraphics[width=\textwidth]{./figures/diagram_zwiazkow.png}
-\caption{Diagram zależności ERD}
+\caption{Diagram zależności EER}
 \end{figure}
 
 \begin{footnotesize}
 \begin{itemize}
-\item Stacje pogodowe (Stations id)
+\item Stacje pogodowe (StationID)
     \begin{itemize}
-	\item Stacja pogodowa (MeteoStation id)
-	\item Położenie (Localization id)
+    \item Nazwa Stacji Pogodowej
     \item Automatyczny komentarz
     \item Komentarz analityka
+    \item Analityk (AnalystID)
     \end{itemize}
-\item Stacja pogodowa (MeteoStation id)
+\item Pomiary Podstawowe (MeasurementID)
     \begin{itemize}
     \item Data
     \item Godzina
-    \item Temperatura (Temperature id)
     \item Wilgotność
-    \item Wiatr (Wind id)
     \item Ciśnienie
     \item Opady
-    \item Zachmurzenie (Clouds id)
     \item Widoczność
+    \item Stacja Pogodowa (StationID)
     \end{itemize}
-\item Położenie (Localization id)
+\item Położenie (LocalizationID)
 	\begin{itemize}
-	\item Stacje pogodowe (Stations id)
 	\item Szerokość geograficzna
     \item Długość geograficzna
     \item Wysokość (m n.p.m.)
+    \item Stacja Pogodowa (StationID)
 	\end{itemize}
-\item Temperatura (Temperature id)
+\item Temperatura (TemperatureID)
     \begin{itemize}
-    \item Stacja pogodowa (MeteoStation id)
     \item minimalna
     \item średnia
     \item maksymalna
+    \item Stacja Pogodowa (StationID)
     \end{itemize}
-\item Wiatr (Wind id)
+\item Wiatr (WindID)
     \begin{itemize}
-    \item Stacja pogodowa (MeteoStation id)
     \item kierunek
     \item prędkość
     \item porywy
+	\item Stacja Pogodowa (StationID)
     \end{itemize}
-\item Zachmurzenie (Clouds id)
+\item Zachmurzenie (CloudsID)
 	\begin{itemize}
 	\item Wskaźnik całkowity
 	\item Wskaźnik dolny
+	\item Stacja Pogodowa (StationID)
 	\end{itemize}
-\item Administratorzy (Admin id)
+\item Administratorzy (AdminID)
     \begin{itemize}
     \item Login
     \item Hasło
@@ -160,7 +160,7 @@ Wynikiem analizy danych są wykresy zależności różnych czynników pogodowych
     \item Nazwisko
     \item e-mail
     \end{itemize}
-\item Analitycy (Analyst id)
+\item Analitycy (AnalystID)
     \begin{itemize}
     \item Login
     \item Hasło
@@ -178,7 +178,7 @@ Wynikiem analizy danych są wykresy zależności różnych czynników pogodowych
 \caption{Poziomy kompetencji klientów} 
   \resizebox{\textwidth}{!}{\begin{tabular}{ | c | c | c | c | c |}   
     \hline
-    \textbf{Klient }& \textbf{Stacje }& \textbf{Stacja }& \textbf{Położenie }&\textbf{ Temperatura }\\ \hline
+    \textbf{Klient }& \textbf{Stacje }& \textbf{Pomiary }& \textbf{Położenie }&\textbf{ Temperatura }\\ \hline
     \textbf{Administrator }& owner & owner & table.readonly & table.readonly \\ \hline
     \textbf{Analityk }& table.readonly & table.readonly & table.readonly & table.readonly \\     \hline
     \textbf{Użytkownik }& table.readonly & table.readonly & table.readonly & table.readonly \\ \hline

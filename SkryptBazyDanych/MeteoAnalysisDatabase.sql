@@ -26,7 +26,9 @@ create table StacjePogodowe
 StationID INT,
 NazwaStacjiPogodowej VARCHAR(15),
 AutomatycznyKomentarz TEXT,
-KomentarzAnalityka TEXT);
+KomentarzAnalityka TEXT,
+AnalystID INT,
+foreign key (AnalystID) references Analitycy(AnalystID) ON UPDATE CASCADE ON DELETE RESTRICT);
 
 create table Polozenie
 (PRIMARY KEY(LocationID),
@@ -80,3 +82,4 @@ MeaserementID INT,
 StationID INT,
 foreign key (MeaserementID) references PomiaryPodstawowe(MeasurementID) ON UPDATE CASCADE ON DELETE RESTRICT,
 foreign key (StationID) references StacjePogodowe(StationID) ON UPDATE CASCADE ON DELETE RESTRICT);
+
