@@ -69,11 +69,9 @@ Termin zajęć: piątek 9:15\\
 \normalsize
 Projekt jest realizowany w ramach kursu Bazy Danych na specjalności Robotyka (ARR), na kierunku Automatyka i Robotyka (AiR), na wydziale Elektroniki (EKA), na Politechnice Wrocławskiej.\par
 Celem projektu jest stworzenie bazy danych przechowującej informacje pogodowe z różnych stacji, pobierane z serwera oraz zaimplementowanie metod analizy danych i wizualizacji wyników.\par
-Dane do analizy zostaną pobrane z serwera ogimet.com dla wielu stacji pogodowych w Polsce i zapisane w tabelach.\par
-Zostaną stworzone dwie główne tabele z danymi, jedna będzie przechowywać podstawowe informacje o wszystkich aktualizowanych stacjach, druga informacje o warunkach pogodowych w pobliżu danej stacji z kolejnych dni.
-Standardowy użytkownik bazy ma uprawnienia jedynie do wyświetlania wyników analizy oraz danych pogodowych.\par
-Administrator ma dodatkowo możliwość dodawania, usuwania i zmiany stacji pogodowych, dla których będą pobierane dane.\par
-Wynikiem analizy danych są wykresy zależności różnych czynników pogodowych od siebie, wykresy porównawcze dla różnych stacji pogodowych, automatycznie generowany komentarz dotyczący warunków w pobliżu danej stacji oraz komentarz analityka.
+Dane do analizy zostaną pobrane z serwera ogimet.com dla wielu stacji pogodowych w Polsce i zapisane w tabelach. Dane będą pobierane z witryny za pomocą skryptu napisanego w języku Pascal, uruchamianego cyklicznie przez skrypt bazy.\par
+Zostaną stworzone tabele z danymi, przechowujące podstawowe informacje o wszystkich aktualizowanych stacjach oraz pomiary meteo w pobliżu danej stacji z kolejnych dni.\par
+Wynikiem analizy danych są wykresy zależności różnych czynników pogodowych od siebie, wykresy porównawcze dla różnych stacji pogodowych, autokorelacja i korelacja wzajemna pomiarów, automatycznie generowany komentarz dotyczący warunków w pobliżu danej stacji oraz komentarz analityka.
 \newpage
 \subsection{Wymagania}
 \subsubsection{Wymagania funkcjonalne}
@@ -111,18 +109,16 @@ Wynikiem analizy danych są wykresy zależności różnych czynników pogodowych
 \item Stacje pogodowe (StationID)
     \begin{itemize}
     \item Nazwa Stacji Pogodowej
-    \item Automatyczny komentarz
-    \item Komentarz analityka
+    \item Automatyczny komentarz (Wynik analizy danych)
+    \item Komentarz analityka (Wynik analizy danych)
     \item Analityk (AnalystID)
     \end{itemize}
-\item Pomiary Podstawowe (MeasurementID)
+\item Pomiary (MeasurementID)
     \begin{itemize}
-    \item Data
-    \item Godzina
-    \item Wilgotność
-    \item Ciśnienie
-    \item Opady
-    \item Widoczność
+    \item DataPomiaru
+    \item GodzinaPomiaru
+    \item KodPomiaru
+    \item WartośćPomiaru
     \item Stacja Pogodowa (StationID)
     \end{itemize}
 \item Położenie (LocalizationID)
@@ -131,26 +127,6 @@ Wynikiem analizy danych są wykresy zależności różnych czynników pogodowych
     \item Długość geograficzna
     \item Wysokość (m n.p.m.)
     \item Stacja Pogodowa (StationID)
-	\end{itemize}
-\item Temperatura (TemperatureID)
-    \begin{itemize}
-    \item minimalna
-    \item średnia
-    \item maksymalna
-    \item Stacja Pogodowa (StationID)
-    \end{itemize}
-\item Wiatr (WindID)
-    \begin{itemize}
-    \item kierunek
-    \item prędkość
-    \item porywy
-	\item Stacja Pogodowa (StationID)
-    \end{itemize}
-\item Zachmurzenie (CloudsID)
-	\begin{itemize}
-	\item Wskaźnik całkowity
-	\item Wskaźnik dolny
-	\item Stacja Pogodowa (StationID)
 	\end{itemize}
 \item Administratorzy (AdminID)
     \begin{itemize}
@@ -170,29 +146,44 @@ Wynikiem analizy danych są wykresy zależności różnych czynników pogodowych
     \end{itemize}
 \end{itemize}
 \end{footnotesize}
+Kod Pomiaru jest tablicą maksymalnie 4 znaków jednoznacznie identyfikujących typ wielkości fizycznej przechowywanej w tym rzędzie:
+\begin{itemize}
+\item TMAX - Maksymalna dzienna/godzinowa temperatura powietrza ($^\circ C$)
+\item TMIN - Minimalna dzienna/godzinowa temperatura powietrza ($^\circ C$)
+\item TMID - Średnia dzienna/godzinowa temperatura powietrza ($^\circ C$)
+\item HAVG - Średnia wilgotność powietrza (\%)
+\item WDIR - Kierunek wiatru
+\item WINT - Średnia prędkość wiatru (km/h)
+\item WGUS - Prędkość wiatru w porywach (km/h)
+\item PRES - Ciśnienie (hPa)
+\item PREC - Opady ogólnie (deszcz, śnieg) (mm)
+\item TCLD - Zachmurzenie całkowite
+\item LCLD - Zachmurzenie w dolnych partiach
+\item SVIS - Widoczność (km)
+\end{itemize}
 \newpage
 \subsection{Lista funkcjonalności}
 %tabelka z rolami uzytkownikow
 \begin{table}[!htb]
 \centering
 \caption{Poziomy kompetencji klientów} 
-  \resizebox{\textwidth}{!}{\begin{tabular}{ | c | c | c | c | c |}   
+  \resizebox{0.9\textwidth}{!}{\begin{tabular}{ | c | c | c | c |}   
     \hline
-    \textbf{Klient }& \textbf{Stacje }& \textbf{Pomiary }& \textbf{Położenie }&\textbf{ Temperatura }\\ \hline
-    \textbf{Administrator }& owner & owner & table.readonly & table.readonly \\ \hline
-    \textbf{Analityk }& table.readonly & table.readonly & table.readonly & table.readonly \\     \hline
-    \textbf{Użytkownik }& table.readonly & table.readonly & table.readonly & table.readonly \\ \hline
+    \textbf{Klient }& \textbf{Stacje }& \textbf{Pomiary }& \textbf{Położenie }\\ \hline
+    \textbf{Administrator }& owner & owner & owner  \\ \hline
+    \textbf{Analityk }& owner & table.readonly & table.readonly \\     \hline
+    \textbf{Użytkownik }& table.readonly & table.readonly & table.readonly  \\ \hline
   \end{tabular}}
 \end{table}
 
 \begin{table}[!htb]
 \centering 
-  \resizebox{\textwidth}{!}{\begin{tabular}{ | c | c | c | c | c |}   
+  \resizebox{0.7\textwidth}{!}{\begin{tabular}{ | c | c | c | }   
     \hline
-    \textbf{Klient }&\textbf{ Wiatr }& \textbf{Zachmurzenie }& \textbf{Administratorzy }& \textbf{Analitycy}\\ \hline    
-    \textbf{Administrator }& table.readonly & table.readonly & owner & owner  \\ \hline
-    \textbf{Analityk }& table.readonly & table.readonly & - & - \\    \hline
-    \textbf{Użytkownik }& table.readonly & table.readonly & - & - \\ \hline
+    \textbf{Klient }& \textbf{Administratorzy }& \textbf{Analitycy}\\ \hline    
+    \textbf{Administrator }& owner & owner  \\ \hline
+    \textbf{Analityk }& - & - \\    \hline
+    \textbf{Użytkownik } & - & - \\ \hline
   \end{tabular}}
 \end{table}
 
@@ -207,6 +198,7 @@ Rolom przyporządkowanym do poszczególnych użytkowników przyporządkowano nas
 \caption{Diagram przypadków użycia}
 \end{figure}
  
+ \newpage
 \begin{small}
 \begin{enumerate}
 \item Użytkownik
@@ -237,6 +229,7 @@ Rolom przyporządkowanym do poszczególnych użytkowników przyporządkowano nas
         \begin{itemize}
         \item Zmiana komentarza analityka
         \item Ręczna aktualizacja wyników
+        \item Odczytanie id analityka dodającego komentarz
         \end{itemize}
     \end{itemize}
 \item Analityk (dziedziczy po użytkowniku)
