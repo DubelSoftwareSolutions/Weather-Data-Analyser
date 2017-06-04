@@ -7,6 +7,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
+DROP DATABASE if exists AnalizaDanychPogodowych;
+CREATE DATABASE AnalizaDanychPogodowych;
+use AnalizaDanychPogodowych;
+
 create table if not exists `Administratorzy`
 (PRIMARY KEY(`AdminID`),
 `AdminID` INT AUTO_INCREMENT,
@@ -55,11 +59,11 @@ foreign key (`StationID`) references `StacjePogodowe`(`StationID`) ON UPDATE CAS
 
 insert into `Administratorzy` (`AdminID`,`login`,`haslo`,`imie`,`nazwisko`,`e_mail`) values
 (0,'piernik','piernik1','Dymitr','Choroszczak','218627@student.pwr.edu.pl'),
-(1,'bułek','bułek1','Krzysztof','Dąbek','218549@student.pwr.edu.pl');
+(1,'bulek','bulek1','Krzysztof','Dabek','218549@student.pwr.edu.pl');
 
 insert into `Analitycy` (`AnalystID`,`login`,`haslo`,`imie`,`nazwisko`,`e_mail`) values
-(0,'analityk0','password0','Józef','Piłsudski','dyktator@gmail.com'),
-(1,'analityk1','password1','Bolesław','Prus','lalkaftw@gmail.com');
+(0,'analityk0','password0','Jozef','Pilsudski','dyktator@gmail.com'),
+(1,'analityk1','password1','Boleslaw','Prus','lalkaftw@gmail.com');
 
 DELIMITER ;;
 CREATE PROCEDURE GetAdminInfo(in p_login TINYTEXT, IN p_password TINYTEXT)
