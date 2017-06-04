@@ -151,9 +151,76 @@ BEGIN
 END ;;
 
 DELIMITER ;;
-CREATE PROCEDURE GetStationMeteoData(p_stationID INT)
+DROP PROCEDURE IF EXISTS `GetStationMeteoData`;;
+CREATE PROCEDURE `GetStationMeteoData`(IN `p_stationID` INT(11))
+    NO SQL
 BEGIN
-/*TODO*/
+
+
+DROP VIEW IF EXISTS widok_pomiaru;
+CREATE VIEW widok_pomiaru AS (
+  SELECT
+    DataPomiaru, StationID,
+    case when KodPomiaru = "TMIN" then WartoscPomiaru end as TMIN,
+    case when KodPomiaru = "TMAX" then WartoscPomiaru end as TMAX,
+    case when KodPomiaru = "TMID" then WartoscPomiaru end as TMID,
+    case when KodPomiaru = "TAVG" then WartoscPomiaru end as TAVG,
+    case when KodPomiaru = "HAVG" then WartoscPomiaru end as HAVG,
+    case when KodPomiaru = "WINT" then WartoscPomiaru end as WINT,
+    case when KodPomiaru = "WGUS" then WartoscPomiaru end as WGUS,
+    case when KodPomiaru = "PRES" then WartoscPomiaru end as PRES,
+    case when KodPomiaru = "PREC" then WartoscPomiaru end as PREC,
+    case when KodPomiaru = "TCLD" then WartoscPomiaru end as TCLD,
+    case when KodPomiaru = "LCLD" then WartoscPomiaru end as LCLD,
+	case when KodPomiaru = "SUNH" then WartoscPomiaru end as SUNH,
+    case when KodPomiaru = "SVIS" then WartoscPomiaru end as SVIS
+  FROM pomiary
+);
+
+DROP VIEW IF EXISTS widok_pomiaru_pivot;
+CREATE VIEW widok_pomiaru_pivot AS (
+  SELECT
+    DataPomiaru, StationID,
+    sum(TMIN) as TMIN,
+    sum(TMAX) as TMAX,
+    sum(TMID) as TMID,
+    sum(HAVG) as HAVG,
+    sum(TAVG) as TAVG,
+    sum(WINT) as WINT,
+    sum(WGUS) as WGUS,
+    sum(PRES) as PRES,
+    sum(PREC) as PREC,
+    sum(TCLD) as TCLD,
+    sum(LCLD) as LCLD,
+    sum(SUNH) as SUNH,
+    sum(SVIS) as SVIS
+
+  from widok_pomiaru
+  group by DataPomiaru DESC
+);
+
+DROP VIEW IF EXISTS widok_pomiaru_pivot_collaps;
+CREATE VIEW widok_pomiaru_pivot_collaps as (
+  SELECT
+    DataPomiaru, StationID,
+    COALESCE(TMIN, 0) as TMIN, 
+    COALESCE(TMAX, 0) as TMAX, 
+    COALESCE(TMID, 0) as TMID,
+    COALESCE(TAVG, 0) as TAVG,
+    COALESCE(HAVG, 0) as HAVG,
+    COALESCE(WINT, 0) as WINT,
+    COALESCE(WGUS, 0) as WGUS,
+    COALESCE(PRES, 0) as PRES,
+    COALESCE(PREC, 0) as PREC,
+    COALESCE(TCLD, 0) as TCLD,
+    COALESCE(LCLD, 0) as LCLD,
+    COALESCE(SUNH, 0) as SUNH,
+    COALESCE(SVIS, 0) as SVIS
+    
+  FROM widok_pomiaru_pivot
+);
+
+SELECT * FROM widok_pomiaru_pivot_collaps WHERE StationID = p_stationID;
 END;;
 
 DELIMITER ;;
