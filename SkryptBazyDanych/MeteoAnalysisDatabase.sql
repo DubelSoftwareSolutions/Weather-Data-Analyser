@@ -50,6 +50,7 @@ foreign key (`StationID`) references `StacjePogodowe`(`StationID`) ON UPDATE CAS
 create table if not exists `Pomiary`
 (PRIMARY KEY(`MeasurementID`),
 `MeasurementID` INT AUTO_INCREMENT,
+`DateStationID` INT,
 `DataPomiaru` DATE,
 `GodzinaPomiaru` TIME,
 `KodPomiaru` VARCHAR(5),
@@ -154,17 +155,10 @@ BEGIN
     DELETE FROM `Administratorzy` WHERE `login`=p_login; 
 END ;;
 
-DELIMITER ;;
-DROP PROCEDURE IF EXISTS `GetStationMeteoData`;;
-CREATE PROCEDURE `GetStationMeteoData`(IN `p_stationID` INT(11))
-    NO SQL
-BEGIN
-
-
 DROP VIEW IF EXISTS widok_pomiaru;
 CREATE VIEW widok_pomiaru AS (
   SELECT
-    DataPomiaru, StationID,
+    DateStationID, DataPomiaru, StationID,
     case when KodPomiaru = "TMIN" then WartoscPomiaru end as TMIN,
     case when KodPomiaru = "TMAX" then WartoscPomiaru end as TMAX,
     case when KodPomiaru = "TMID" then WartoscPomiaru end as TMID,
@@ -184,7 +178,7 @@ CREATE VIEW widok_pomiaru AS (
 DROP VIEW IF EXISTS widok_pomiaru_pivot;
 CREATE VIEW widok_pomiaru_pivot AS (
   SELECT
-    DataPomiaru, StationID,
+    DateStationID, DataPomiaru, StationID,
     sum(TMIN) as TMIN,
     sum(TMAX) as TMAX,
     sum(TMID) as TMID,
@@ -200,13 +194,13 @@ CREATE VIEW widok_pomiaru_pivot AS (
     sum(SVIS) as SVIS
 
   from widok_pomiaru
-  group by DataPomiaru DESC
+  group by DateStationID
 );
 
 DROP VIEW IF EXISTS widok_pomiaru_pivot_collaps;
 CREATE VIEW widok_pomiaru_pivot_collaps as (
   SELECT
-    DataPomiaru, StationID,
+    DateStationID, DataPomiaru, StationID,
     COALESCE(TMIN, 0) as TMIN, 
     COALESCE(TMAX, 0) as TMAX, 
     COALESCE(TMID, 0) as TMID,
@@ -223,6 +217,11 @@ CREATE VIEW widok_pomiaru_pivot_collaps as (
     
   FROM widok_pomiaru_pivot
 );
+
+DELIMITER ;;
+DROP PROCEDURE IF EXISTS `GetStationMeteoData`;;
+CREATE PROCEDURE `GetStationMeteoData`(IN `p_stationID` INT(11))
+BEGIN
 
 SELECT * FROM widok_pomiaru_pivot_collaps WHERE StationID = p_stationID;
 END;;

@@ -85,8 +85,20 @@
 					$LastMeasuremetDate= "2017-05-01";
 				$DatabaseConnection->next_result();
 			}
+			$Query= "SELECT `DateStationID` from `pomiary` ORDER BY `DateStationID` DESC LIMIT 1";
+			if($QueryResult = @$DatabaseConnection->query($Query))
+			{
+				if($Row = $QueryResult->fetch_assoc())
+				{
+					$BiggestStationDateID = $Row['DateStationID'];
+					$QueryResult->free_result();
+				}
+				else
+					$BiggestStationDateID= 0;
+				$DatabaseConnection->next_result();
+			}
 			$pyscript = 'E:\\programs\\xampp\\htdocs\\DanePogodoweWebpage\\OgimetHtmlParser\\OgimetHtmlParser\\OgimetHtmlParser.py';
-			$pyargs = $LocationID.' '.$BiggestMeasurementID.' '.$_POST['StationID'].' '.$StationName.' '.$LastMeasuremetDate;
+			$pyargs = $LocationID.' '.$BiggestMeasurementID.' '.$BiggestStationDateID.' '.$_POST['StationID'].' '.$StationName.' '.$LastMeasuremetDate;
 			$python = 'E:\\programs\\Python\\Anaconda3\\python.exe';
 			$cmd = "$python $pyscript $pyargs";
 			$output=shell_exec("$cmd");

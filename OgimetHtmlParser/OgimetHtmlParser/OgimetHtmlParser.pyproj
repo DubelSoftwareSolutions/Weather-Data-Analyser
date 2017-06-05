@@ -13,7 +13,7 @@
     <Name>OgimetHtmlParser</Name>
     <RootNamespace>OgimetHtmlParser</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>17 442 31 Berlin 2017-06-04</CommandLineArguments>
+    <CommandLineArguments>17 442 300 31 Berlin 2017-06-01</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <InterpreterId>{46627106-b7b9-4aca-a3ba-43966e1402e6}</InterpreterId>
     <InterpreterVersion>3.5</InterpreterVersion>

@@ -72,12 +72,14 @@ def ClearParserData():
     MyParser3.SUN = 0.0
     MyParser3.SVIS = 0.0
     MyParser3.DataID = IdOfFirstData
+    MyParser3.DataStationID = IdOfFirstDataStation
 
 IdOfLocation = str(sys.argv[1])
 IdOfFirstData = int(sys.argv[2])
-IdOfStation = str(sys.argv[3])
-NameOfStation = str(sys.argv[4])
-LastDataDate = datetime.datetime.strptime( str(sys.argv[5]),"%Y-%m-%d")
+IdOfFirstDataStation = int(sys.argv[3])
+IdOfStation = str(sys.argv[4])
+NameOfStation = str(sys.argv[5])
+LastDataDate = datetime.datetime.strptime( str(sys.argv[6]),"%Y-%m-%d")
 NowDateTime = datetime.datetime.now()
 NumberOfDays = (NowDateTime - LastDataDate).days
 LocationOutputFile = open(NameOfStation+'Location.txt','w')
@@ -90,8 +92,9 @@ def SaveLocationToFile(p_MyParser2):
     LocationOutputFile.write(p_MyParser2.Altitude+' ')
     LocationOutputFile.write(IdOfStation+'\n')
 
-def SaveDataToFile(p_MyParser3, p_DataCode, p_DataValue, p_DataID):
+def SaveDataToFile(p_MyParser3, p_DataCode, p_DataValue, p_DataID,p_StationDataID):
     DataOutputFile.write(str(p_DataID)+' ')
+    DataOutputFile.write(str(p_StationDataID)+' ')
     DataOutputFile.write(p_MyParser3.Date+' ')
     DataOutputFile.write(str(NowDateTime.hour)+':'+str(NowDateTime.minute)+':'+str(NowDateTime.second)+' ')
     DataOutputFile.write(p_DataCode+' '+str(p_DataValue)+' '+IdOfStation+'\n')
@@ -142,6 +145,7 @@ class MyHTMLParser3(HTMLParser):
             self.IndexTableFound=1
         if((tag=='a') and self.IndexTableFound):
             self.IndexRowFound=1
+            self.DataStationID+=1
             self.DataFound=0
         if((tag=='td') and self.Date!='0' and self.DataFound==0):
             self.DataFound=1
@@ -155,27 +159,27 @@ class MyHTMLParser3(HTMLParser):
             self.DataID+=1
             self.TMAX=data
             self.DataFound=0
-            SaveDataToFile(self,"TMAX",self.TMAX,self.DataID)
+            SaveDataToFile(self,"TMAX",self.TMAX,self.DataID,self.DataStationID)
         elif(self.TMAX != 0 and self.TMIN == 0 and self.DataFound):
             self.DataID+=1
             self.TMIN=data
             self.DataFound=0
-            SaveDataToFile(self,"TMIN",self.TMIN,self.DataID)
+            SaveDataToFile(self,"TMIN",self.TMIN,self.DataID,self.DataStationID)
         elif(self.TMIN != 0 and self.TMID == 0 and self.DataFound):
             self.DataID+=1
             self.TMID=data
             self.DataFound=0
-            SaveDataToFile(self,"TMID",self.TMID,self.DataID)
+            SaveDataToFile(self,"TMID",self.TMID,self.DataID,self.DataStationID)
         elif(self.TMID != 0 and self.TAVG == 0 and self.DataFound):
             self.DataID+=1
             self.TAVG=data
             self.DataFound=0
-            SaveDataToFile(self,"TAVG",self.TAVG,self.DataID)
+            SaveDataToFile(self,"TAVG",self.TAVG,self.DataID,self.DataStationID)
         elif(self.TAVG != 0 and self.HAVG == 0 and self.DataFound):
             self.DataID+=1
             self.HAVG=data
             self.DataFound=0
-            SaveDataToFile(self,"HAVG",self.HAVG,self.DataID)
+            SaveDataToFile(self,"HAVG",self.HAVG,self.DataID,self.DataStationID)
         elif(self.HAVG != 0 and self.WDIR == 0 and self.DataFound):
             self.WDIR=data
             self.DataFound=0
@@ -183,42 +187,42 @@ class MyHTMLParser3(HTMLParser):
             self.DataID+=1
             self.WINT=data
             self.DataFound=0
-            SaveDataToFile(self,"WINT",self.WINT,self.DataID)
+            SaveDataToFile(self,"WINT",self.WINT,self.DataID,self.DataStationID)
         elif(self.WINT != 0 and self.WGUS == 0 and self.DataFound):
             self.DataID+=1
             self.WGUS=data
             self.DataFound=0
-            SaveDataToFile(self,"WGUS",self.WGUS,self.DataID)
+            SaveDataToFile(self,"WGUS",self.WGUS,self.DataID,self.DataStationID)
         elif(self.WGUS != 0 and self.PRES == 0 and self.DataFound):
             self.DataID+=1
             self.PRES=data
             self.DataFound=0
-            SaveDataToFile(self,"PRES",self.PRES,self.DataID)
+            SaveDataToFile(self,"PRES",self.PRES,self.DataID,self.DataStationID)
         elif(self.PRES != 0 and self.PREC == 0 and self.DataFound):
             self.DataID+=1
             self.PREC=data
             self.DataFound=0
-            SaveDataToFile(self,"PREC",self.PREC,self.DataID)
+            SaveDataToFile(self,"PREC",self.PREC,self.DataID,self.DataStationID)
         elif(self.PREC != 0 and self.TCLD == 0 and self.DataFound):
             self.DataID+=1
             self.TCLD=data
             self.DataFound=0
-            SaveDataToFile(self,"TCLD",self.TCLD,self.DataID)
+            SaveDataToFile(self,"TCLD",self.TCLD,self.DataID,self.DataStationID)
         elif(self.TCLD != 0 and self.LCLD == 0 and self.DataFound):
             self.DataID+=1
             self.LCLD=data
             self.DataFound=0
-            SaveDataToFile(self,"LCLD",self.LCLD,self.DataID)
+            SaveDataToFile(self,"LCLD",self.LCLD,self.DataID,self.DataStationID)
         elif(self.LCLD != 0 and self.SUN == 0 and self.DataFound):
             self.DataID+=1
             self.SUN=data
             self.DataFound=0
-            SaveDataToFile(self,"SUNH",self.SUN,self.DataID)
+            SaveDataToFile(self,"SUNH",self.SUN,self.DataID,self.DataStationID)
         elif(self.SUN != 0 and self.SVIS == 0 and self.DataFound):
             self.DataID+=1
             self.SVIS=data
             self.DataFound=0
-            SaveDataToFile(self,"SVIS",self.SVIS,self.DataID)
+            SaveDataToFile(self,"SVIS",self.SVIS,self.DataID,self.DataStationID)
             ClearParser3Data(self)
 
 
