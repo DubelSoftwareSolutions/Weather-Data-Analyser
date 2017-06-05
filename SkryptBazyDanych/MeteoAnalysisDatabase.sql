@@ -155,7 +155,6 @@ BEGIN
     DELETE FROM `Administratorzy` WHERE `login`=p_login; 
 END ;;
 
-DROP VIEW IF EXISTS widok_pomiaru;
 CREATE VIEW widok_pomiaru AS (
   SELECT
     DateStationID, DataPomiaru, StationID,
@@ -173,9 +172,8 @@ CREATE VIEW widok_pomiaru AS (
 	case when KodPomiaru = "SUNH" then WartoscPomiaru end as SUNH,
     case when KodPomiaru = "SVIS" then WartoscPomiaru end as SVIS
   FROM pomiary
-);
+);;
 
-DROP VIEW IF EXISTS widok_pomiaru_pivot;
 CREATE VIEW widok_pomiaru_pivot AS (
   SELECT
     DateStationID, DataPomiaru, StationID,
@@ -195,9 +193,8 @@ CREATE VIEW widok_pomiaru_pivot AS (
 
   from widok_pomiaru
   group by DateStationID
-);
+);;
 
-DROP VIEW IF EXISTS widok_pomiaru_pivot_collaps;
 CREATE VIEW widok_pomiaru_pivot_collaps as (
   SELECT
     DateStationID, DataPomiaru, StationID,
@@ -216,10 +213,10 @@ CREATE VIEW widok_pomiaru_pivot_collaps as (
     COALESCE(SVIS, 0) as SVIS
     
   FROM widok_pomiaru_pivot
-);
+);;
+
 
 DELIMITER ;;
-DROP PROCEDURE IF EXISTS `GetStationMeteoData`;;
 CREATE PROCEDURE `GetStationMeteoData`(IN `p_stationID` INT(11))
 BEGIN
 
