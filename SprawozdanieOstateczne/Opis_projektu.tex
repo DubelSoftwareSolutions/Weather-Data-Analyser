@@ -283,7 +283,9 @@ Komentarz automatyczny jest generowany w PHP. Skrypt wysyła zapytania do bazy d
 \subsubsection{Wykresy porównawcze}
 Wykresy są generowane przez skrypt w języku Python, na podstawie podanych argumentów wywołania. Skrypt łączy się z bazą danych i pobiera informacje z tabeli \textit{`Pomiary`}, następnie nakłada pomiary zadanych wielkości na jeden wykres i generuje obraz \textit{.png}, który jest dodawany do strony HTML z użyciem PHP.
 \subsubsection{Autokorelacja}
-%TODO
+Wykresy są generowane w sposób analogiczny do wykresów porównawczych.
+Na podstawie uzyskanych daną metodą wykresów, możemy wnioskować o sezonowości danych. Autokorelacja pomaga w interpretacji wzorca powtarzania się zjawisk (w naszym przypadku pogodowych). Wykresy oscylujące w okolicach 0 po osiągnięciu lokalnego minimum świadczą o braku jakichkolwiek zależności w badanym szeregu danych. O sezonowych zależnościach możemy mówić dopiero wtedy, gdy wartości wykresu osiągają amplitudy o wartości co najmniej 0.3. Wiarygodność uzyskanych wyników zależy od liczebności badanego zbioru danych. Im większa liczniejszy zbiór, tym większa szansa obserwacji zależności. Wraz ze zwiększeniem się opóźnienia dana liczebność spada, co wynika wprost ze sposobu sporządzania wykresu autokorelacji.
+Badając zależności danych pogodowych takich jak temperatura czy opady, możemy zaobserwować pewną sezonowość wyników, gdy badane są próbki na przestrzeni roku czy kilku lat, lecz próba wykrycia zezonowości na przestrzeni miesiąca zakończy się niepowodzeniem w większości przypadków.
 \subsection{Interfejs Użytkownika (HTML, PHP)}
 W ramach interfejsu użytkownika stworzono prostą stronę HTML obsługiwaną w PHP. Nie starczyło czasu na stworzenie przyjemnego dla oka interfejsu. W interfejsie zaimplementowano wszystkie funkcjonalności bazy przewidziane w założeniach projektowych.
 \subsubsection{Użytkownik}

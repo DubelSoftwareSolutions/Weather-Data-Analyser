@@ -62,7 +62,7 @@ for i in range(2, len(sys.argv)):
     for currentTuple in result:
         dates.append(currentTuple[0])
         values.append(currentTuple[1])
-    offset = round(len(values)*0.8)
+    offset = len(values)
     my_autocorrelation = autocorrelation(values, offset)
     my_x_axis = list()
     for k in range(0, len(my_autocorrelation)):
