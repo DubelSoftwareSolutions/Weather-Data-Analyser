@@ -17,6 +17,7 @@
 		
 		<input type="submit" value="Wyślij"/>
 	</form>
+	Usuwanie Analityka<br/><br/>
 	<form action="delete_analyst.php" method="post">
 		Login: <input type="text" name="login" /> <br/>
 		<input type="submit" value="Wyślij"/>
