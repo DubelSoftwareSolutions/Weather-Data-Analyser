@@ -11,7 +11,6 @@
 	<form action="login.php" method="post">
 		<input type="submit" value="Logowanie"/>
 	</form>
-	<br><a href="meteo_data.php">Wyświetl dane pogodowe</a>
-	<br><a href="meteo_analysis.php">Wyświetl analizę danych</a>
+	<br><a href="meteo_data.php">Wyświetl stacje pogodowe</a>
 </body>
 </html>

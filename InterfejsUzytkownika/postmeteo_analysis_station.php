@@ -13,9 +13,29 @@
 <body>
 	<h1>Analiza Danych</h1>
 	<?php
+		$DataTypes=" ";
+		if($_POST['TMAX']==1) $DataTypes=$DataTypes."TMAX ";
+		if($_POST['TMIN']==1) $DataTypes=$DataTypes."TMIN ";
+		if($_POST['TMID']==1) $DataTypes=$DataTypes."TMID ";
+		if($_POST['TAVG']==1) $DataTypes=$DataTypes."TAVG ";
+		if($_POST['HAVG']==1) $DataTypes=$DataTypes."HAVG ";
+		if($_POST['WINT']==1) $DataTypes=$DataTypes."WINT ";
+		if($_POST['WGUS']==1) $DataTypes=$DataTypes."WGUS ";
+		if($_POST['PRES']==1) $DataTypes=$DataTypes."PRES ";
+		if($_POST['PREC']==1) $DataTypes=$DataTypes."PREC ";
+		if($_POST['TCLD']==1) $DataTypes=$DataTypes."TCLD ";
+		if($_POST['LCLD']==1) $DataTypes=$DataTypes."LCLD ";
+		if($_POST['SUNH']==1) $DataTypes=$DataTypes."SUNH ";
+		if($_POST['SVIS']==1) $DataTypes=$DataTypes."SVIS ";
+		$pyscript = '..\\DatabaseGraphGenerator\\DatabaseGraphGenerator\\DatabaseGraphGenerator.py';
+		$pyargs = ' '.$_POST['StationName'].' '.$DataTypes;
+		$python = 'E:\\programs\\Python\\Anaconda3\\python.exe';
+		$cmd = "$python $pyscript $pyargs";
+		$output=shell_exec("$cmd");
+			
 		echo	 "<h2>Wykresy porównawcze dla stacji: ".$_POST['StationName']."</h2>";
-		?>
-		
+	?>
+			
 		<form action="postmeteo_analysis_station.php" method="post">
 			<input type="hidden" name="TMAX" value="0">
 			<input type="checkbox" name="TMAX" value="1"> T maksymalna
@@ -55,14 +75,17 @@
 			
 			<input type="hidden" name="SVIS" value="0">
 			<input type="checkbox" name="SVIS" value="1"> Widoczność
-			
 			<?php
 			echo "<input type='hidden' name='StationName' value=".$_POST['StationName'].">";
 			?>
 			<br><input type='submit' value='Pokaż'/>
-		</form><br>
+		</form>
+		
+		<br>
 		<?php
-		require_once "user_info.php";
+			$DataTypes=str_replace(' ', '', $DataTypes);
+			echo "<img src=".$_POST['StationName'].$DataTypes."plot.png width=1600><br>";
+			require_once "user_info.php";
 		?>
 	<br><a href="meteo_data.php">Powrót do poprzedniej strony</a>
 </body>

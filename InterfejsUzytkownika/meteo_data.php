@@ -46,11 +46,20 @@
 					if(!isset($_SESSION['UserType']))
 					{
 						echo "<td>".$Row['KomentarzAnalityka']."</td>";
+						echo "<td>";
+						echo "<form action='meteo_analysis_station.php' method='post'>";
+						echo "<input type='hidden' name='StationName' value=".$Row['NazwaStacjiPogodowej'].">";
+						echo "<button><b>Analiza Danych</b></button>";
+						echo "</form>";
 					}
 					else if ($_SESSION['UserType']=='Admin')
 					{
 						echo "<td>".$Row['KomentarzAnalityka']."</td>";
 						echo "<td>";
+						echo "<form action='meteo_analysis_station.php' method='post'>";
+						echo "<input type='hidden' name='StationName' value=".$Row['NazwaStacjiPogodowej'].">";
+						echo "<button><b>Analiza Danych</b></button>";
+						echo "</form>";
 						echo "<form action='update_comment.php' method='post'>";
 						echo "<input type='hidden' name='StationID' value=".$Row['StationID'].">";
 						echo "<button>Update Auto Comment</button>";
@@ -72,6 +81,9 @@
 					{
 						echo "<td>".$Row['KomentarzAnalityka']."</td>";
 						echo "<td>";
+						echo "<form action='meteo_analysis_station.php' method='post'>";
+						echo "<input type='hidden' name='StationName' value=".$Row['NazwaStacjiPogodowej'].">";
+						echo "<button><b>Analiza Danych</b></button>";
 						echo "</form>";
 						echo "<form action='update_comment.php' method='post'>";
 						echo "<input type='hidden' name='StationID' value=".$Row['StationID'].">";

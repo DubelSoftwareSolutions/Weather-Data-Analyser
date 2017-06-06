@@ -32,8 +32,7 @@
 	<form action="logout.php" method="post">
 		<input type="submit" value="Wyloguj"/>
 	</form>
-	<br><a href="meteo_data.php">Wyświetl dane pogodowe</a>
-	<br><a href="meteo_analysis.php">Wyświetl analizę danych</a>
+	<br><a href="meteo_data.php">Wyświetl stacje pogodowe</a>
 	<br><a href="add_analyst.php">Dodaj/Usuń Analityka</a>
 	<br><a href="add_admin.php">Dodaj/Usuń Administratora</a>
 

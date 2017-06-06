@@ -97,7 +97,7 @@
 					$BiggestStationDateID= 0;
 				$DatabaseConnection->next_result();
 			}
-			$pyscript = 'E:\\programs\\xampp\\htdocs\\DanePogodoweWebpage\\OgimetHtmlParser\\OgimetHtmlParser\\OgimetHtmlParser.py';
+			$pyscript = '..\\OgimetHtmlParser\\OgimetHtmlParser\\OgimetHtmlParser.py';
 			$pyargs = $LocationID.' '.$BiggestMeasurementID.' '.$BiggestStationDateID.' '.$_POST['StationID'].' '.$StationName.' '.$LastMeasuremetDate;
 			$python = 'E:\\programs\\Python\\Anaconda3\\python.exe';
 			$cmd = "$python $pyscript $pyargs";
@@ -171,7 +171,6 @@
 			echo "</table>";
 		
 		$DatabaseConnection->close();
-		Header("Refresh:3600");
 		}
 	?>
 	<br><a href="meteo_data.php">Powrót do poprzedniej strony</a>
