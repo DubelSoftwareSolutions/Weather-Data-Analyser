@@ -76,7 +76,7 @@ for i in range(2, len(sys.argv)):
                            cycler('linestyle', [' ', ' ', ' ', ' '])))
     pyplot.plot(my_x_axis,my_autocorrelation,label=DataType[i-2])
     title+=DataType[i-2]+", "
-    filename+="_" + DataType[i-2]
+    filename+=DataType[i-2]
 
 fig.tight_layout()
 fig.subplots_adjust(bottom=0.1)

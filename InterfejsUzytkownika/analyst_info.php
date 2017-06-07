@@ -17,7 +17,6 @@
 		else
 		{
 			$Query= "CALL GetAnalystInfoID(".$_POST['AnalystID'].")";
-			echo $Query;
 			if($QueryResult = @$DatabaseConnection->query($Query))
 			{
 				$Row = $QueryResult->fetch_assoc();

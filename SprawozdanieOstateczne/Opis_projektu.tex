@@ -254,6 +254,7 @@ Zapytania służące stworzeniu bazy danych w ramach tego projektu zostały zapi
 \end{itemize}
 \item Widoków wykorzystywanych przez procedury, wyświetlających tablicę \textit{`pomiary`} z kolumnami zaczerpniętymi z kolumny \textit{`KodPomiaru`}.
 \item Procedur potrzebnych do realizacji interfejsu użytkownika:
+\begin{small}
 \begin{itemize}
 \item \textbf{GetAdminInfo} -- pobiera informacje o administratorze
 \item \textbf{GetAnalystInfo} -- Pobiera informacje o analityku
@@ -269,6 +270,7 @@ Zapytania służące stworzeniu bazy danych w ramach tego projektu zostały zapi
 \item \textbf{DeleteAdmin }-- Usuwa administratora
 \item \textbf{GetStationMeteoData} -- Pobiera pomiary dla stacji w odpowiednim widoku
 \end{itemize}
+\end{small}
 \end{itemize}
 \par Wszystkie funkcjonalności, które nie zostały zaimplementowane jako procedury bazy danych w MySQL, zaimplementowano w interfejsie użytkownika jako ciąg zapytań MySQL wywoływanych z poziomu języka PHP lub Python. Zdecydowano się na takie rozwiązanie z powodu ograniczeń języka MySQL, co do wykorzystania i operacji na zmiennych w widokach i procedurach.
 
@@ -283,9 +285,10 @@ Komentarz automatyczny jest generowany w PHP. Skrypt wysyła zapytania do bazy d
 \subsubsection{Wykresy porównawcze}
 Wykresy są generowane przez skrypt w języku Python, na podstawie podanych argumentów wywołania. Skrypt łączy się z bazą danych i pobiera informacje z tabeli \textit{`Pomiary`}, następnie nakłada pomiary zadanych wielkości na jeden wykres i generuje obraz \textit{.png}, który jest dodawany do strony HTML z użyciem PHP.
 \subsubsection{Autokorelacja}
-Wykresy są generowane w sposób analogiczny do wykresów porównawczych.
-Na podstawie uzyskanych daną metodą wykresów, możemy wnioskować o sezonowości danych. Autokorelacja pomaga w interpretacji wzorca powtarzania się zjawisk (w naszym przypadku pogodowych). Wykresy oscylujące w okolicach 0 po osiągnięciu lokalnego minimum świadczą o braku jakichkolwiek zależności w badanym szeregu danych. O sezonowych zależnościach możemy mówić dopiero wtedy, gdy wartości wykresu osiągają amplitudy o wartości co najmniej 0.3. Wiarygodność uzyskanych wyników zależy od liczebności badanego zbioru danych. Im większa liczniejszy zbiór, tym większa szansa obserwacji zależności. Wraz ze zwiększeniem się opóźnienia dana liczebność spada, co wynika wprost ze sposobu sporządzania wykresu autokorelacji.
-Badając zależności danych pogodowych takich jak temperatura czy opady, możemy zaobserwować pewną sezonowość wyników, gdy badane są próbki na przestrzeni roku czy kilku lat, lecz próba wykrycia zezonowości na przestrzeni miesiąca zakończy się niepowodzeniem w większości przypadków.
+Wykresy są generowane w sposób analogiczny do wykresów porównawczych.\par
+Na podstawie uzyskanych daną metodą wykresów, możemy wnioskować o sezonowości danych. Autokorelacja pomaga w interpretacji wzorca powtarzania się zjawisk (w naszym przypadku pogodowych). Wykresy oscylujące w okolicach 0 po osiągnięciu lokalnego minimum świadczą o braku jakichkolwiek zależności w badanym szeregu danych. O sezonowych zależnościach możemy mówić dopiero wtedy, gdy wartości wykresu osiągają amplitudy o wartości co najmniej 0.3. Wiarygodność uzyskanych wyników zależy od liczebności badanego zbioru danych. Im liczniejszy zbiór, tym większa szansa obserwacji zależności. Wraz ze zwiększeniem się opóźnienia dana liczebność spada, co wynika wprost ze sposobu sporządzania wykresu autokorelacji.\par
+Badając zależności danych pogodowych takich jak temperatura czy opady, możemy zaobserwować pewną sezonowość wyników, gdy badane są próbki na przestrzeni roku czy kilku lat, lecz próba wykrycia sezonowości na przestrzeni miesiąca zakończy się niepowodzeniem w większości przypadków.\par
+Zdecydowano się na pobieranie danych z serwisu \textit{ogimet.com}, który nie udostępnia danych starszych niż miesiąc. Sezonowość wyników możnaby zaobserwować na podstawie autokorelacji po kilku latach administrowania stworzonej bazy danych.
 \subsection{Interfejs Użytkownika (HTML, PHP)}
 W ramach interfejsu użytkownika stworzono prostą stronę HTML obsługiwaną w PHP. Nie starczyło czasu na stworzenie przyjemnego dla oka interfejsu. W interfejsie zaimplementowano wszystkie funkcjonalności bazy przewidziane w założeniach projektowych.
 \subsubsection{Użytkownik}
@@ -293,7 +296,7 @@ W ramach interfejsu użytkownika stworzono prostą stronę HTML obsługiwaną w 
 \item \textbf{Logowanie} -- Interfejs umożliwia logowanie na konto analityka lub administratora, które udostępniają więcej opcji.
 \item \textbf{Wyświetlanie stacji pogodowych} -- Wyświetlenie tabeli \textit{`StacjePogodowe`} pobranej z bazy danych z dodatkowymi opcjami wyświetlania pomiarów dla każdej ze stacji oraz wyświetlenia analizy danych.
 \item \textbf{Pomiary dla stacji} -- Po przejściu do jednej ze stacji wywoływany jest skrypt pobierający dane z serwera dla tej stacji od aktualnej daty do daty ostatniej aktualizacji. Następnie pobierane są informacje z widoku stworzonego w bazie, a tak przygotowana tabela jest wyświetlana w interfejsie.
-\item \textbf{Analiza danych (wykresy)} -- Interfejs umożliwia wybranie wartości, które mają zostać wyświetlone na wykresie za pomocą \textit{checkboxów}, a po wciśnięciu przycisku "pokaż" wywołuje skrypt generujący wykres ze wszystkimi zaznaczonymi typami pomiarów jako parametry.
+\item \textbf{Analiza danych (wykresy)} -- Interfejs umożliwia wybranie wartości, które mają zostać wyświetlone na wykresie za pomocą \textit{checkboxów}, a po wciśnięciu przycisku "pokaż" wywołuje skrypt generujący wykres ze wszystkimi zaznaczonymi typami pomiarów jako parametry. To samo dla wykresów autokorelacji dla danych typów pomiarów ze zmiennym opóźnieniem.
 \end{itemize}
 \subsubsection{Analityk}
 Analityk może korzystać ze wszystkich możliwości interfejsu zwykłego użytkownika, a także:
