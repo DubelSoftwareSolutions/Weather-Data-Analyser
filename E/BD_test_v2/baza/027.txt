@@ -1,0 +1,19 @@
+X001
+27. Informacje o wszystkich plikach baz danych Oracle zawarte s¹
+a) w plikach konfiguracyjnych
+b) w plikach kodu
+c) w plikach kontrolnych
+
+
+
+
+
+
+
+
+
+
+
+
+
+

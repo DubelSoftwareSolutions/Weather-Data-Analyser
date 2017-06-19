@@ -1,0 +1,6 @@
+X0100
+Do kontroli poprawnoœci i spójnoœci danych s³u¿y:
+a) stored packages
+b) integrity constraints
+c) sequences
+d) rollback segments

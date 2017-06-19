@@ -1,0 +1,14 @@
+X001
+22. Prostok¹t z zaokr¹glonymi k¹tami jest u¿ywany do
+1. oznaczenia klas bazowych
+2. ozn. klas pochodnych
+3. ozn. stanów systemu
+
+
+
+
+
+
+
+
+

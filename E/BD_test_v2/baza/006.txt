@@ -1,0 +1,3 @@
+X1
+6. CREATE PROCEDURE mo¿e siê pojawiæ: (takie tam upoœledzone)
+a) PL/SQL //na pewno tutaj ale czy gdzieœ jeszcze to nie wiem

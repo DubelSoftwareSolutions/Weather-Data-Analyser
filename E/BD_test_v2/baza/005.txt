@@ -1,0 +1,6 @@
+X0100
+5.Procedury wbudowane Oracle gromadzone s¹ w: (prawdopodobnie dobrze)
+a) bibliotekach (libraries)
+b) przestrzeniach tablicowych (tablespace)
+c) pakietach (packages)
+d) wyzwalanych (triggers)

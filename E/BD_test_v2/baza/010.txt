@@ -1,0 +1,5 @@
+X001
+10. ... eksport bazy danych umo¿liwia:
+a) skopiowanie tylko struktury logicznej
+b) skopiowanie tylko struktury fizycznej
+c) skopiowanie struktury logicznej i fizycznej

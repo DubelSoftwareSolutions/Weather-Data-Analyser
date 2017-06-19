@@ -1,0 +1,6 @@
+X1000
+7. Kursorem nazywamy
+a) strukturê pozwalaj¹c¹ na przetwarzanie wyniku zapytania wiersz po wierszu
+b) wskaŸnik do fragmentu tablicy, na który jest nak³adana blokada
+c) filtr za³o¿ony na tabeli, umo¿liwiaj¹cy podgl¹d podzbioru informacji
+d) procent wykorzystania przestrzeni tablicowej

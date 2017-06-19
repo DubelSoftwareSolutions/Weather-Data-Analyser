@@ -1,0 +1,18 @@
+X010
+26. Identycznie nazywane metody dla ró¿nych typów obiektów to
+a) dziedziczenie
+b) polimorfizm
+c) enkapsulacja
+
+
+
+
+
+
+
+
+
+
+
+
+

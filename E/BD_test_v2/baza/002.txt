@@ -1,0 +1,6 @@
+X0010
+Wybór podzbioru kolumn z tabeli nazywa siê:
+a) selekcja 
+b) bijekcj¹
+c) projekcja
+d) intersekcj¹

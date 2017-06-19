@@ -1,0 +1,21 @@
+X0001
+28. Dane s¹ 2 zbiory o liczbie elementów odpowiednio n i m. Ile elementów ma iloczyn kartezjañski tych zbiorów?
+a) min(n,m)
+b) max(n,m)
+c) n+m
+d) nm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

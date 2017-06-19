@@ -1,0 +1,9 @@
+X010
+17. Procesy drugoplanowe Oracle wymieniaj¹ informacje pomiêdzy?
+1. U¿ytkownikiem a SGA
+2. SGA a plikami bazy danych
+3. u¿ytkownikiem a plikami bazy danych
+
+
+
+

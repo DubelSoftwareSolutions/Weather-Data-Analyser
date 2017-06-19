@@ -1,0 +1,6 @@
+X0100
+4. Przy wykonywaniu operacji ROLLBACK wykorzystuje
+a) dziennik powtórzeñ
+b) segment wycofañ
+c) kopia zapasowa
+d) plik œladu

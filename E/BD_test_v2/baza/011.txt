@@ -1,0 +1,6 @@
+X0001
+11. Istnienie odpowiedniego indeksu skraca czas wyszukiwania
+a) o sta³¹ wartoœæ
+b) liniowo (proporcjonalnie do liczby rekordów)
+c) wielomianowo
+d) logarytmicznie

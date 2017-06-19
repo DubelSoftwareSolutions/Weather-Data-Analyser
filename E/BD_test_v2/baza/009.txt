@@ -1,0 +1,6 @@
+X0010
+9. Indeks do tablicy mo¿na utworzyæ:
+a) tylko przed utworzeniem tabeli
+b) tylko wtedy, gdy tabela jest pusta (indeks mozna utworzyc do pustej/pelnej tabeli)
+c) tylko wtedy gdy baza danych jest zamkniêta
+d) w dowolnym momencie przy otwartej bazie danych

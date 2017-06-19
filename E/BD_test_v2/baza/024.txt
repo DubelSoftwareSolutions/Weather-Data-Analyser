@@ -1,0 +1,16 @@
+X001
+24. Indeks do tabeli mo¿na utworzyæ
+1. tylko wtedy gdy tabela jest pusta
+2. tylko wtedy gdy baza danych jest zamkniêta
+3. w dowolnym momencie przy otwartej bazie danych
+
+
+
+
+
+
+
+
+
+
+

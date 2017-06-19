@@ -1,0 +1,5 @@
+X100
+13. Sk³adowa statyczna (static) klasy jest
+a) wspólna dla wszystkich obiektów danej klasy
+b) niemo¿liwa do modyfikacji
+c) zajmuje sta³y rozmiar w pamiêci

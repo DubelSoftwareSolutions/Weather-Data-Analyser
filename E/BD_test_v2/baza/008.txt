@@ -1,0 +1,6 @@
+X0010
+8. Który podpunkt zawiera tylko polecenia typu DDL_SQL
+a) select, update
+b) insert, delete
+c) alter ,create
+d) delete, truncate

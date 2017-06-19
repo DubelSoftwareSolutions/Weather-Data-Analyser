@@ -1,0 +1,11 @@
+X001
+19. Kolejnoœæ do sk³adnika do...?
+a) segment-rozszerzenie-blok
+b) segment-blok-rozszerzenie
+c) blok-rozszerzenie-segment
+
+
+
+
+
+

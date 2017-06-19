@@ -1,0 +1,10 @@
+X100
+18. Szablony wektorów tworzy siê w celu poprawienia efektywnoœci
+1. wyszukiwania elementu na podstawie indeksu
+2. przechodzenia do elementu poprzedniego
+3. przechodzenia do elementu nastêpnego
+
+
+
+
+

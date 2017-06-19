@@ -1,0 +1,6 @@
+X010
+14. £atwiej rozszerzalne o nowe typy danych s¹
+a) relacyjne bazy danych
+b) obiektowe bazy danych
+c) nie ma to znaczenia
+

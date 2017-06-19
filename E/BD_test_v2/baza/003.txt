@@ -1,0 +1,6 @@
+X0001
+Które z poni¿szych technik zwi¹zane s¹ z synchronizacj¹: (nie pewne)
+a) tabele i indeksy partycjonowane
+b) sekwencje i blokady
+c) profile i przywileje
+d) proces nas³uchu i odbiæ

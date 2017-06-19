@@ -1,0 +1,13 @@
+X001
+21. Pe³ny eksport bazy danych umo¿liwia
+a) skopiowanie struktury logicznej
+b) skopiowanie struktury fizycznej
+c) skopiowanie struktury logicznej i fizycznej
+
+
+
+
+
+
+
+

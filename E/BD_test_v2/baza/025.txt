@@ -1,0 +1,17 @@
+X100
+25. Polecenie shutdown normal...
+a) po zakoñczeniu wszystkich transakcji, nie pozwala otwierañ nowych
+b) po zakoñczeniu wszystkich...
+c) natychmiast
+
+
+
+
+
+
+
+
+
+
+
+

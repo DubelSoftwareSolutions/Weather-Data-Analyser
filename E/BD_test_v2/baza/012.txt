@@ -1,0 +1,5 @@
+X010
+12. W warstwowym modelu sieci fizycznie po³¹czone s¹
+a) warstwy aplikacji
+b) warstwy kana³owe
+c) warstwy sieciowe
